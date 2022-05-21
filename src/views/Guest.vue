@@ -24,9 +24,9 @@
           Note: Add the list of possible types
         </p>
       </div>
-
-      <div class="w-100"></div>
-
+    </div>
+      
+    <div class="row">
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         <p class="normal_text">Secondary type</p>
       </div>
@@ -50,9 +50,9 @@
           Note: Add the list of possible types
         </p>
       </div>
-
-      <div class="w-100"></div>
-
+    </div>
+      
+    <div class="row">
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         <p class="normal_text">Primary colour*</p>
       </div>
@@ -76,9 +76,9 @@
           Note: Add the list of possible colours
         </p>
       </div>
-
-      <div class="w-100"></div>
-
+    </div>
+      
+    <div class="row">
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         <p class="normal_text">Secondary colour</p>
       </div>
@@ -102,9 +102,9 @@
           Note: Add the list of possible colours
         </p>
       </div>
-
-      <div class="w-100"></div>
-
+    </div>
+      
+    <div class="row">
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         <p class="normal_text">Form</p>
       </div>
@@ -128,9 +128,9 @@
           (Base form, 1st stage, 2nd stage)
         </p>
       </div>
-
-      <div class="w-100"></div>
-
+    </div>
+      
+    <div class="row">
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         <p class="normal_text">Evolution method</p>
       </div>
@@ -154,9 +154,9 @@
           it's previous stage. <br />Note: Add the list of possible methods
         </p>
       </div>
-
-      <div class="w-100"></div>
-
+    </div>
+      
+    <div class="row">
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         <p class="normal_text">Regional variant</p>
       </div>
@@ -180,9 +180,9 @@
           (Original, Alolan, Galarian, Hisuian)
         </p>
       </div>
+    </div>
 
-      <div class="w-100"></div>
-
+    <div class="row">
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         <p class="normal_text">Dex Entry</p>
       </div>
@@ -206,9 +206,9 @@
           (Note: might not be implemented)
         </p>
       </div>
+    </div>
 
-      <div class="w-100"></div>
-
+    <div class="row">
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         <p class="normal_text">Base stat total</p>
       </div>
