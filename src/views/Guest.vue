@@ -5,7 +5,18 @@
         <p class="normal_text">Primary type*</p>
       </div>
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-        Note: insert field for input
+        <form>
+            <div class="form-group">
+              <label for="inputPrimaryType" class="plain_text"></label>
+              <input
+                type="primaryType"
+                class="form-control"
+                id="inputPrimaryType"
+                aria-describedby="emailHelp"
+                placeholder="Enter primary type"
+              />
+            </div>
+        </form>
       </div>
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         <p class="explanation">
@@ -20,7 +31,18 @@
         <p class="normal_text">Secondary type</p>
       </div>
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-        Note: insert field for input
+        <form>
+            <div class="form-group">
+              <label for="inputSecondaryType" class="plain_text"></label>
+              <input
+                type="secondaryType"
+                class="form-control"
+                id="inputSecondaryType"
+                aria-describedby="emailHelp"
+                placeholder="Enter secondary type"
+              />
+            </div>
+        </form>
       </div>
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         <p class="explanation">
@@ -35,7 +57,18 @@
         <p class="normal_text">Primary colour*</p>
       </div>
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-        Note: insert field for input
+        <form>
+            <div class="form-group">
+              <label for="inputPrimaryColour" class="plain_text"></label>
+              <input
+                type="primaryColour"
+                class="form-control"
+                id="inputPrimaryColour"
+                aria-describedby="emailHelp"
+                placeholder="Enter primary colour"
+              />
+            </div>
+        </form>
       </div>
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         <p class="explanation">
@@ -50,7 +83,18 @@
         <p class="normal_text">Secondary colour</p>
       </div>
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-        Note: insert field for input
+        <form>
+            <div class="form-group">
+              <label for="inputSecondaryColour" class="plain_text"></label>
+              <input
+                type="secondaryColour"
+                class="form-control"
+                id="inputSecondaryColour"
+                aria-describedby="emailHelp"
+                placeholder="Enter secondary colour"
+              />
+            </div>
+        </form>
       </div>
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         <p class="explanation">
@@ -65,7 +109,18 @@
         <p class="normal_text">Form</p>
       </div>
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-        Note: insert field for input
+        <form>
+            <div class="form-group">
+              <label for="inputForm" class="plain_text"></label>
+              <input
+                type="form"
+                class="form-control"
+                id="inputForm"
+                aria-describedby="emailHelp"
+                placeholder="Enter form"
+              />
+            </div>
+        </form>
       </div>
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         <p class="explanation">
@@ -80,7 +135,18 @@
         <p class="normal_text">Evolution method</p>
       </div>
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-        Note: insert field for input
+        <form>
+            <div class="form-group">
+              <label for="inputEvolutionMethod" class="plain_text"></label>
+              <input
+                type="evolutionMethod"
+                class="form-control"
+                id="inputEvolutionMethod"
+                aria-describedby="emailHelp"
+                placeholder="Enter evolution method"
+              />
+            </div>
+        </form>
       </div>
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         <p class="explanation">
@@ -95,7 +161,18 @@
         <p class="normal_text">Regional variant</p>
       </div>
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-        Note: insert field for input
+        <form>
+            <div class="form-group">
+              <label for="inputRegionalVariant" class="plain_text"></label>
+              <input
+                type="regionalVariant"
+                class="form-control"
+                id="inputRegionalVariant"
+                aria-describedby="emailHelp"
+                placeholder="Enter regional variant"
+              />
+            </div>
+        </form>
       </div>
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         <p class="explanation">
@@ -110,7 +187,18 @@
         <p class="normal_text">Dex Entry</p>
       </div>
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-        Note: insert field for input
+        <form>
+            <div class="form-group">
+              <label for="inputDexEntry" class="plain_text"></label>
+              <input
+                type="dexEntry"
+                class="form-control"
+                id="inputDexEntry"
+                aria-describedby="emailHelp"
+                placeholder="Enter dex entry"
+              />
+            </div>
+        </form>
       </div>
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         <p class="explanation">
@@ -125,7 +213,18 @@
         <p class="normal_text">Base stat total</p>
       </div>
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-        Note: insert field for input
+        <form>
+            <div class="form-group">
+              <label for="inputBaseStatTotal" class="plain_text"></label>
+              <input
+                type="baseStatTotal"
+                class="form-control"
+                id="inputBaseStatTotal"
+                aria-describedby="emailHelp"
+                placeholder="Enter base stat total"
+              />
+            </div>
+        </form>
       </div>
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         <p class="explanation">Enter this Pokémon's base stat total.</p>
@@ -133,7 +232,7 @@
     </div>
 
     <button
-      type="button"
+      type="submit"
       class="btn btn-success btn-lg"
       style="
         margin: 1em;
@@ -143,6 +242,7 @@
       "
     >
       <router-link to="/guest2">Continue</router-link>
+      <!-- Note: will have to create this page with display once database and backend communication are complete -->
     </button>
 
   </div>
