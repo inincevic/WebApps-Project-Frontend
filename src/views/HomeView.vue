@@ -16,7 +16,7 @@
         background-color: #ffcb05;
       "
     >
-      Log in
+      <router-link to="/login">Login</router-link>
     </button>
     <button
       type="button"
@@ -28,7 +28,7 @@
         background-color: #ffcb05;
       "
     >
-      Guest
+      <router-link to="/guest">Guest</router-link>
     </button>
     <button
       type="button"
@@ -40,7 +40,7 @@
         background-color: #ffcb05;
       "
     >
-      Register
+      <router-link to="/registration">Register</router-link>
     </button>
   </div>
 </template>
