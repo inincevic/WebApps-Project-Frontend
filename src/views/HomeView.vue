@@ -1,18 +1,45 @@
 <template>
   <div class="home">
-    <br>
-    <br>
+    <br />
+    <br />
     <h1 class="title_text">Welcome to PokéGuesserProject v3</h1>
     <br />
     <p class="plain_text">Please choose your user experience.</p>
     <br />
-    <button type="button" class="btn btn-success btn-lg" style="margin: 1em; font-family: 'Pokemon Solid'; color: #2a75bb; background-color: #ffcb05">
+    <button
+      type="button"
+      class="btn btn-success btn-lg"
+      style="
+        margin: 1em;
+        font-family: 'Pokemon Solid';
+        color: #2a75bb;
+        background-color: #ffcb05;
+      "
+    >
       Log in
     </button>
-    <button type="button" class="btn btn-success btn-lg" style="margin: 1em; font-family: 'Pokemon Solid'; color: #2a75bb; background-color: #ffcb05">
+    <button
+      type="button"
+      class="btn btn-success btn-lg"
+      style="
+        margin: 1em;
+        font-family: 'Pokemon Solid';
+        color: #2a75bb;
+        background-color: #ffcb05;
+      "
+    >
       Guest
     </button>
-    <button type="button" class="btn btn-success btn-lg" style="margin: 1em; font-family: 'Pokemon Solid'; color: #2a75bb; background-color: #ffcb05">
+    <button
+      type="button"
+      class="btn btn-success btn-lg"
+      style="
+        margin: 1em;
+        font-family: 'Pokemon Solid';
+        color: #2a75bb;
+        background-color: #ffcb05;
+      "
+    >
       Register
     </button>
   </div>
@@ -46,6 +73,4 @@ export default {
   font-family: "Pokemon Solid", sans-serif;
   font-size: 35px;
 }
-
-
 </style>
