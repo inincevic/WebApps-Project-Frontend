@@ -6,6 +6,17 @@
     <br />
     <p class="plain_text">Please choose your user experience.</p>
     <br />
+    <div id="app">
+      <div v-for="p in pokemoni" :key="p">
+        {{ p.name }}
+        {{ p.primary_type }}
+        {{ p.secondary_type }}
+        {{ p.primary_colour }}
+        {{ p.secondary_colour }}
+        {{ p.stage }}
+        {{ p.evolution_method }}
+      </div>
+    </div>
     <button
       type="button"
       class="btn btn-success btn-lg"
@@ -47,12 +58,17 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
 
 export default {
   name: "HomeView",
-  components: {
-    HelloWorld,
+  mounted() {
+    let response = fetch("http://localhost:3000/pokemoni");
+    console.log(response);
+  },
+  data() {
+    return {
+      pokemoni: [],
+    };
   },
 };
 </script>
