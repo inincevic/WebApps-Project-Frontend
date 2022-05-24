@@ -1,30 +1,36 @@
 <template>
   <div class="about">
     <h1 class="title_text">Log in using your credentials</h1>
-    <br>
-    <br>
+    <br />
+    <br />
     <div class="container">
       <div class="row">
         <div class="col-sm"></div>
         <div class="col-sm">
-          <form>
+          <form @submit="checkCredentials()" action="#" onsubmit="return false">
             <div class="form-group">
-              <label for="exampleInputEmail1" class="plain_text">Email address</label>
+              <label for="exampleInputEmail1" class="plain_text"
+                >Email address</label
+              >
               <input
                 type="email"
                 class="form-control"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
                 placeholder="Enter email"
+                v-model="loginCredentials.email"
               />
             </div>
             <div class="form-group">
-              <label for="exampleInputPassword1" class="plain_text">Password</label>
+              <label for="exampleInputPassword1" class="plain_text"
+                >Password</label
+              >
               <input
                 type="password"
                 class="form-control"
                 id="exampleInputPassword1"
                 placeholder="Password"
+                v-model="loginCredentials.password"
               />
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
@@ -39,6 +45,54 @@
 <script>
 //I still need to implement the way login is checked with the backend.
 //This page will lead to another after a successful login
+import axios from "axios";
+// import { createApp } from 'vue'
+// import { createStore } from 'vuex'
+
+// const store = createStore({
+//   state() {
+//     return {
+//       validLogin: 0
+//     }
+//   },
+//   mutations: {
+//     validate(state) {
+//       state.validLogin =
+//     }
+//   }
+// })
+// const app = createApp({
+//   app.use(store)
+// })
+
+export default {
+  name: "Login",
+
+  async mounted() {},
+
+  methods: {
+    checkCredentials() {
+      axios
+        .post("http://localhost:3000/login", this.loginCredentials)
+        .then((response) => {
+          this.$router.push({
+            name: "profile",
+          });
+        });
+    },
+  },
+
+  data() {
+    return {
+      validLogin: 0,
+
+      loginCredentials: {
+        email: "",
+        password: "",
+      },
+    };
+  },
+};
 </script>
 
 <style scoped>

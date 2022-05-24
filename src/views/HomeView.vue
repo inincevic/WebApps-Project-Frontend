@@ -59,18 +59,18 @@
 <script>
 // @ is an alias to /src
 
-export default {
-  name: "HomeView",
-  mounted() {
-    let response = fetch("http://localhost:3000/pokemoni");
-    console.log(response);
-  },
-  data() {
-    return {
-      pokemoni: [],
-    };
-  },
-};
+// export default {
+//   name: "HomeView",
+//   async mounted() {
+//     let resp = await fetch("http://localhost:3000/pokemoni");
+//     this.pokemoni = await resp.json();
+//   },
+//   data() {
+//     return {
+//       pokemoni: [],
+//     };
+//   },
+// };
 </script>
 
 <style scoped>
