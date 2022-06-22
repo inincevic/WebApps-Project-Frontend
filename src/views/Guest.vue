@@ -241,7 +241,7 @@
         background-color: #ffcb05;
       "
     >
-      <router-link to="/guest2">Continue</router-link>
+      <router-link to="/foundguest">Continue</router-link>
       <!-- Note: will have to create this page with display once database and backend communication are complete -->
     </button>
   </div>
