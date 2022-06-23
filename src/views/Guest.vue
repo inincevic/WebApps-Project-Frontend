@@ -5,7 +5,7 @@
         <p class="normal_text">Primary type*</p>
       </div>
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-        <form>
+        <form @submit="sendPokemonCredentials()" action="#" onsubmit="return false">
           <div class="form-group">
             <label for="inputPrimaryType" class="plain_text"></label>
             <input
@@ -239,6 +239,8 @@
         <p class="explanation">Enter this Pokémon's base stat total.</p>
       </div>
     </div>
+
+    <!-- Displaying data entered into fields. Use only to check if the fields work -->
     <!-- <div>
       {{enteredAtributes.type_one}}
       <br>
@@ -273,9 +275,24 @@
 </template>
 
 <script>
+import axios from 'axios';
 
 export default {
-  
+  name: "GuestGuess",
+
+  methods: {
+    sendPokemonCredentials() {
+      axios
+        .post("http://localhost:3000/findpokemon", this.enteredAtributes)
+        .then((response) => {
+          console.log("recieved response");
+          console.log(response)
+          this.$router.push({
+            name: "foundguest",
+          });
+        });
+    },
+  },
   
   data() {
     return {
