@@ -14,6 +14,7 @@
               id="inputPrimaryType"
               aria-describedby="emailHelp"
               placeholder="Enter primary type"
+              v-model="enteredAtributes.type_one"
             />
           </div>
         </form>
@@ -40,6 +41,7 @@
               id="inputSecondaryType"
               aria-describedby="emailHelp"
               placeholder="Enter secondary type"
+              v-model="enteredAtributes.type_two"
             />
           </div>
         </form>
@@ -66,6 +68,7 @@
               id="inputPrimaryColour"
               aria-describedby="emailHelp"
               placeholder="Enter primary colour"
+              v-model="enteredAtributes.colour_one"
             />
           </div>
         </form>
@@ -92,6 +95,7 @@
               id="inputSecondaryColour"
               aria-describedby="emailHelp"
               placeholder="Enter secondary colour"
+              v-model="enteredAtributes.colour_two"
             />
           </div>
         </form>
@@ -118,6 +122,7 @@
               id="inputForm"
               aria-describedby="emailHelp"
               placeholder="Enter form"
+              v-model="enteredAtributes.form"
             />
           </div>
         </form>
@@ -144,6 +149,7 @@
               id="inputEvolutionMethod"
               aria-describedby="emailHelp"
               placeholder="Enter evolution method"
+              v-model="enteredAtributes.evolution_method"
             />
           </div>
         </form>
@@ -170,6 +176,7 @@
               id="inputRegionalVariant"
               aria-describedby="emailHelp"
               placeholder="Enter regional variant"
+              v-model="enteredAtributes.regional_variant"
             />
           </div>
         </form>
@@ -196,6 +203,7 @@
               id="inputDexEntry"
               aria-describedby="emailHelp"
               placeholder="Enter dex entry"
+              v-model="enteredAtributes.dex_entry"
             />
           </div>
         </form>
@@ -222,6 +230,7 @@
               id="inputBaseStatTotal"
               aria-describedby="emailHelp"
               placeholder="Enter base stat total"
+              v-model="enteredAtributes.base_stat_total"
             />
           </div>
         </form>
@@ -230,7 +239,23 @@
         <p class="explanation">Enter this Pokémon's base stat total.</p>
       </div>
     </div>
-
+    <!-- <div>
+      {{enteredAtributes.type_one}}
+      <br>
+      {{enteredAtributes.type_two}}
+      <br>
+      {{enteredAtributes.colour_one}}
+      <br>
+      {{enteredAtributes.colour_two}}
+      <br>
+      {{enteredAtributes.form}}
+      <br>
+      {{enteredAtributes.evolution_method}}
+      <br>
+      {{enteredAtributes.regional_variant}}
+      <br>
+      {{enteredAtributes.base_stat_total}}
+    </div> -->
     <button
       type="submit"
       class="btn btn-success btn-lg"
@@ -247,7 +272,28 @@
   </div>
 </template>
 
-<script></script>
+<script>
+
+export default {
+  
+  
+  data() {
+    return {
+      enteredAtributes: {
+        type_one: "",
+        type_two: "",
+        colour_one: "",
+        colour_two: "",
+        form: "",
+        evolution_method: "",
+        regional_variant: "",
+        base_stat_total:""
+      },
+    };
+  },
+}
+
+</script>
 
 <style scoped>
 @import url("http://fonts.cdnfonts.com/css/pokemon-solid"); /* font-family: 'Pokemon Solid', sans-serif; */

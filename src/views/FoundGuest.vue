@@ -21,6 +21,22 @@
             Base stat total: {{pokemon.base_state_total}}
         </p>
     </div>
+
+    <button
+      type="button"
+      class="btn btn-success btn-lg"
+      style="
+        margin: 1em;
+        font-size: 25px;
+        font-family: 'Pokemon Solid';
+        color: #2a75bb;
+        background-color: #ffcb05;
+      "
+    >
+      <router-link to="/">Home</router-link>
+      <!-- Note: will have to create this page with display once database and backend communication are complete -->
+    </button>
+
   </div>
 </template>
 
