@@ -12,7 +12,7 @@
             <br>
             Form: {{pokemon.form}}
             <br>
-            Evolution {{pokemon.evolution_method}}
+            Evolution method: {{pokemon.evolution_method}}
             <br>
             Regional variant: {{pokemon.regional_variant}}
             <br>
@@ -61,7 +61,21 @@ export default {
                 base_state_total: "test"
             }
         }
-    }
+    },
+    created() {
+      this.pokemon.name = localStorage.getItem("foundPokemonName");
+      console.log(localStorage.getItem("foundPokemonName"))
+      this.pokemon.types.type_one = localStorage.getItem("foundPokemonTypeOne");
+      this.pokemon.types.type_two = localStorage.getItem("foundPokemonTypeTwo");
+      this.pokemon.colours.colour_one = localStorage.getItem("foundPokemonColourOne");
+      this.pokemon.colours.colour_two = localStorage.getItem("foundPokemonColourTwo");
+      this.pokemon.form = localStorage.getItem("foundPokemonStage");
+      this.pokemon.evolution_method = localStorage.getItem("foundPokemonEvolutionMethod");
+      this.pokemon.regional_variant = localStorage.getItem("foundPokemonRegionalVariant");
+      this.pokemon.dex_entry = localStorage.getItem("foundPokemonEntry");
+      this.pokemon.base_state_total = localStorage.getItem("foundPokemonBST");
+      console.log(this.pokemon);
+    },
 }
 
 </script>

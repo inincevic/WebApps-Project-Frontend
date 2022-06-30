@@ -110,19 +110,19 @@
 
     <div class="row">
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-        <p class="normal_text">Form</p>
+        <p class="normal_text">Stage</p>
       </div>
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         <form>
           <div class="form-group">
             <label for="inputForm" class="plain_text"></label>
             <input
-              type="form"
+              type="stage"
               class="form-control"
               id="inputForm"
               aria-describedby="emailHelp"
               placeholder="Enter form"
-              v-model="enteredAtributes.form"
+              v-model="enteredAtributes.stage"
             />
           </div>
         </form>
@@ -203,7 +203,7 @@
               id="inputDexEntry"
               aria-describedby="emailHelp"
               placeholder="Enter dex entry"
-              v-model="enteredAtributes.dex_entry"
+              v-model="dexEntry"
             />
           </div>
         </form>
@@ -282,27 +282,45 @@ export default {
   name: "GuestGuess",
 
   methods: {
+    setPokemon(response) {
+      console.log(response.data.pokemon_name)
+      localStorage.setItem("foundPokemonName", response.data.pokemon_name);
+      localStorage.setItem("foundPokemonTypeOne", this.enteredAtributes.type_one);
+      localStorage.setItem("foundPokemonTypeTow", this.enteredAtributes.type_two);
+      localStorage.setItem("foundPokemonColourOne", this.enteredAtributes.colour_one);
+      localStorage.setItem("foundPokemonColourTwo", this.enteredAtributes.colour_two);
+      localStorage.setItem("foundPokemonStage", response.data.stage);
+      localStorage.setItem("foundPokemonEvolutionMethod", this.enteredAtributes.evolution_method);
+      localStorage.setItem("foundPokemonRegionalVariant", this.enteredAtributes.regional_variant);
+      localStorage.setItem("foundPokemonBST", response.data.base_stat_total);
+      localStorage.setItem("foundPokemonEntry", this.dexEntry);
+    },
     sendPokemonCredentials() {
       axios
         .post("http://localhost:3000/findpokemon", this.enteredAtributes)
         .then((response) => {
           console.log("recieved response");
-          console.log(response)
-          this.$router.push({
-            name: "foundguest",
-          });
+          console.log(response.data.pokemon_name);
+          if(response.data) {
+            this.setPokemon(response);
+            this.$router.push({
+              name: "foundguest",
+            });
+          }
+          //push to 404 pokemon not found
         });
     },
   },
   
   data() {
     return {
+      dexEntry: "",
       enteredAtributes: {
         type_one: "",
         type_two: "",
         colour_one: "",
         colour_two: "",
-        form: "",
+        stage: "",
         evolution_method: "",
         regional_variant: "",
         base_stat_total:""
