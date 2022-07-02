@@ -1,25 +1,26 @@
 <template>
   <div class="about">
     <h1 class="title_text">The Pokémon is</h1>
-    <br>
+    <br />
     <div class="display_div">
-        <p class="normal_text"> 
-            Name:  {{pokemon.name}}
-            <br>
-            Type: {{pokemon.types.type_one}}, {{pokemon.types.type_two}}
-            <br>
-            Colours: {{pokemon.colours.colour_one}}, {{pokemon.colours.colour_two}}
-            <br>
-            Form: {{pokemon.form}}
-            <br>
-            Evolution method: {{pokemon.evolution_method}}
-            <br>
-            Regional variant: {{pokemon.regional_variant}}
-            <br>
-            Dex entry: {{pokemon.dex_entry}}
-            <br>
-            Base stat total: {{pokemon.base_state_total}}
-        </p>
+      <p class="normal_text">
+        Name: {{ pokemon.name }}
+        <br />
+        Type: {{ pokemon.types.type_one }}, {{ pokemon.types.type_two }}
+        <br />
+        Colours: {{ pokemon.colours.colour_one }},
+        {{ pokemon.colours.colour_two }}
+        <br />
+        Form: {{ pokemon.form }}
+        <br />
+        Evolution method: {{ pokemon.evolution_method }}
+        <br />
+        Regional variant: {{ pokemon.regional_variant }}
+        <br />
+        Dex entry: {{ pokemon.dex_entry }}
+        <br />
+        Base stat total: {{ pokemon.base_state_total }}
+      </p>
     </div>
 
     <button
@@ -36,50 +37,56 @@
       <router-link to="/">Home</router-link>
       <!-- Note: will have to create this page with display once database and backend communication are complete -->
     </button>
-
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
-    data() {
-        return {
-            pokemon: {
-                name: "test",
-                types: {
-                    type_one: "test",
-                    type_two: "test"},
-                colours: {
-                    colour_one: "test",
-                    colour_two: "test"},
-                form: "test",
-                evolution_method: "test",
-                regional_variant: "test",
-                dex_entry: "test",
-                base_state_total: "test"
-            }
-        }
-    },
-    created() {
-      this.pokemon.name = localStorage.getItem("foundPokemonName");
-      console.log(localStorage.getItem("foundPokemonName"))
-      this.pokemon.types.type_one = localStorage.getItem("foundPokemonTypeOne");
-      this.pokemon.types.type_two = localStorage.getItem("foundPokemonTypeTwo");
-      this.pokemon.colours.colour_one = localStorage.getItem("foundPokemonColourOne");
-      this.pokemon.colours.colour_two = localStorage.getItem("foundPokemonColourTwo");
-      this.pokemon.form = localStorage.getItem("foundPokemonStage");
-      this.pokemon.evolution_method = localStorage.getItem("foundPokemonEvolutionMethod");
-      this.pokemon.regional_variant = localStorage.getItem("foundPokemonRegionalVariant");
-      this.pokemon.dex_entry = localStorage.getItem("foundPokemonEntry");
-      this.pokemon.base_state_total = localStorage.getItem("foundPokemonBST");
-      console.log(this.pokemon);
-    },
-}
-
+  data() {
+    return {
+      pokemon: {
+        name: "",
+        types: {
+          type_one: "",
+          type_two: "",
+        },
+        colours: {
+          colour_one: "",
+          colour_two: "",
+        },
+        form: "",
+        evolution_method: "",
+        regional_variant: "",
+        dex_entry: "",
+        base_state_total: "",
+      },
+    };
+  },
+  created() {
+    this.pokemon.name = localStorage.getItem("foundPokemonName");
+    this.pokemon.types.type_one = localStorage.getItem("foundPokemonTypeOne");
+    this.pokemon.types.type_two = localStorage.getItem("foundPokemonTypeTwo");
+    this.pokemon.colours.colour_one = localStorage.getItem(
+      "foundPokemonColourOne"
+    );
+    this.pokemon.colours.colour_two = localStorage.getItem(
+      "foundPokemonColourTwo"
+    );
+    this.pokemon.form = localStorage.getItem("foundPokemonStage");
+    this.pokemon.evolution_method = localStorage.getItem(
+      "foundPokemonEvolutionMethod"
+    );
+    this.pokemon.regional_variant = localStorage.getItem(
+      "foundPokemonRegionalVariant"
+    );
+    this.pokemon.dex_entry = localStorage.getItem("foundPokemonEntry");
+    this.pokemon.base_state_total = localStorage.getItem("foundPokemonBST");
+    console.log(this.pokemon);
+  },
+};
 </script>
-
 
 <style scoped>
 @import url("http://fonts.cdnfonts.com/css/pokemon-solid"); /* font-family: 'Pokemon Solid', sans-serif; */
@@ -106,8 +113,6 @@ export default {
 }
 
 .display_div {
-    margin-left: 200px;
+  margin-left: 200px;
 }
-
-
 </style>

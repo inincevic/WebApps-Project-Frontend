@@ -5,7 +5,11 @@
         <p class="normal_text">Primary type*</p>
       </div>
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-        <form @submit="sendPokemonCredentials()" action="#" onsubmit="return false">
+        <form
+          @submit="sendPokemonCredentials()"
+          action="#"
+          onsubmit="return false"
+        >
           <div class="form-group">
             <label for="inputPrimaryType" class="plain_text"></label>
             <input
@@ -191,33 +195,6 @@
 
     <div class="row">
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-        <p class="normal_text">Dex Entry</p>
-      </div>
-      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-        <form>
-          <div class="form-group">
-            <label for="inputDexEntry" class="plain_text"></label>
-            <input
-              type="dexEntry"
-              class="form-control"
-              id="inputDexEntry"
-              aria-describedby="emailHelp"
-              placeholder="Enter dex entry"
-              v-model="dexEntry"
-            />
-          </div>
-        </form>
-      </div>
-      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-        <p class="explanation">
-          Type a piece of or entire dex entry of this Pokémon. <br />
-          (Note: might not be implemented)
-        </p>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         <p class="normal_text">Base stat total</p>
       </div>
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
@@ -267,7 +244,7 @@
         color: #2a75bb;
         background-color: #ffcb05;
       "
-      @click=sendPokemonCredentials()
+      @click="sendPokemonCredentials()"
     >
       <router-link to="/foundguest">Continue</router-link>
       <!-- Note: will have to create this page with display once database and backend communication are complete -->
@@ -276,32 +253,67 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   name: "GuestGuess",
 
   methods: {
     setPokemon(response) {
-      console.log(response.data.pokemon_name)
+      localStorage.setItem("foundPokemonName", response.data.dex_number);
       localStorage.setItem("foundPokemonName", response.data.pokemon_name);
-      localStorage.setItem("foundPokemonTypeOne", this.enteredAtributes.type_one);
-      localStorage.setItem("foundPokemonTypeTow", this.enteredAtributes.type_two);
-      localStorage.setItem("foundPokemonColourOne", this.enteredAtributes.colour_one);
-      localStorage.setItem("foundPokemonColourTwo", this.enteredAtributes.colour_two);
+      localStorage.setItem(
+        "foundPokemonTypeOne",
+        response.data.types[0].type_id
+      );
+      if (response.data.types.length > 1) {
+        localStorage.setItem(
+          "foundPokemonTypeTwo",
+          response.data.types[1].type_id
+        );
+      }
+      localStorage.setItem(
+        "foundPokemonColourOne",
+        response.data.colours[0].colour_id
+      );
+      if (response.data.colours.length > 1) {
+        localStorage.setItem(
+          "foundPokemonColourTwo",
+          response.data.colours[1].colour_id
+        );
+      }
       localStorage.setItem("foundPokemonStage", response.data.stage);
-      localStorage.setItem("foundPokemonEvolutionMethod", this.enteredAtributes.evolution_method);
-      localStorage.setItem("foundPokemonRegionalVariant", this.enteredAtributes.regional_variant);
+      localStorage.setItem(
+        "foundPokemonEvolutionMethod",
+        response.data.evolution_method
+      );
+      localStorage.setItem("foundPokemonRegionalVariant", response.data.form);
       localStorage.setItem("foundPokemonBST", response.data.base_stat_total);
-      localStorage.setItem("foundPokemonEntry", this.dexEntry);
+      localStorage.setItem("foundPokemonEntry", response.data.dex_entry);
     },
+
+    removeFromStorage() {
+      localStorage.removeItem("foundPokemonName");
+      localStorage.removeItem("foundPokemonName");
+      localStorage.removeItem("foundPokemonTypeOne");
+      localStorage.removeItem("foundPokemonTypeTwo");
+      localStorage.removeItem("foundPokemonColourOne");
+      localStorage.removeItem("foundPokemonColourTwo");
+      localStorage.removeItem("foundPokemonStage");
+      localStorage.removeItem("foundPokemonEvolutionMethod");
+      localStorage.removeItem("foundPokemonRegionalVariant");
+      localStorage.removeItem("foundPokemonBST");
+      localStorage.removeItem("foundPokemonEntry");
+    },
+
     sendPokemonCredentials() {
       axios
         .post("http://localhost:3000/findpokemon", this.enteredAtributes)
         .then((response) => {
           console.log("recieved response");
-          console.log(response.data.pokemon_name);
-          if(response.data) {
+          console.log(response);
+          this.removeFromStorage();
+          if (response.data) {
             this.setPokemon(response);
             this.$router.push({
               name: "foundguest",
@@ -311,10 +323,9 @@ export default {
         });
     },
   },
-  
+
   data() {
     return {
-      dexEntry: "",
       enteredAtributes: {
         type_one: "",
         type_two: "",
@@ -323,12 +334,11 @@ export default {
         stage: "",
         evolution_method: "",
         regional_variant: "",
-        base_stat_total:""
+        base_stat_total: "",
       },
     };
   },
-}
-
+};
 </script>
 
 <style scoped>
