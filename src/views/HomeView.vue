@@ -7,7 +7,7 @@
     <p class="plain_text">Please choose your user experience.</p>
     <br />
     <div id="app">
-      <div v-for="p in pokemoni" :key="p">
+      <!-- <div v-for="p in pokemoni" :key="p">
         {{ p.name }}
         {{ p.primary_type }}
         {{ p.secondary_type }}
@@ -15,7 +15,7 @@
         {{ p.secondary_colour }}
         {{ p.stage }}
         {{ p.evolution_method }}
-      </div>
+      </div> -->
     </div>
     <button
       type="button"
@@ -67,7 +67,7 @@
 //   },
 //   data() {
 //     return {
-//       pokemoni: [],
+//      pokemoni: [],
 //     };
 //   },
 // };

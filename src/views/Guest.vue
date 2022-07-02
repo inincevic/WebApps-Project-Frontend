@@ -5,7 +5,11 @@
         <p class="normal_text">Primary type*</p>
       </div>
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-        <form>
+        <form
+          @submit="sendPokemonCredentials()"
+          action="#"
+          onsubmit="return false"
+        >
           <div class="form-group">
             <label for="inputPrimaryType" class="plain_text"></label>
             <input
@@ -14,6 +18,7 @@
               id="inputPrimaryType"
               aria-describedby="emailHelp"
               placeholder="Enter primary type"
+              v-model="enteredAtributes.type_one"
             />
           </div>
         </form>
@@ -40,6 +45,7 @@
               id="inputSecondaryType"
               aria-describedby="emailHelp"
               placeholder="Enter secondary type"
+              v-model="enteredAtributes.type_two"
             />
           </div>
         </form>
@@ -66,6 +72,7 @@
               id="inputPrimaryColour"
               aria-describedby="emailHelp"
               placeholder="Enter primary colour"
+              v-model="enteredAtributes.colour_one"
             />
           </div>
         </form>
@@ -92,6 +99,7 @@
               id="inputSecondaryColour"
               aria-describedby="emailHelp"
               placeholder="Enter secondary colour"
+              v-model="enteredAtributes.colour_two"
             />
           </div>
         </form>
@@ -106,18 +114,19 @@
 
     <div class="row">
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-        <p class="normal_text">Form</p>
+        <p class="normal_text">Stage</p>
       </div>
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         <form>
           <div class="form-group">
             <label for="inputForm" class="plain_text"></label>
             <input
-              type="form"
+              type="stage"
               class="form-control"
               id="inputForm"
               aria-describedby="emailHelp"
               placeholder="Enter form"
+              v-model="enteredAtributes.stage"
             />
           </div>
         </form>
@@ -144,6 +153,7 @@
               id="inputEvolutionMethod"
               aria-describedby="emailHelp"
               placeholder="Enter evolution method"
+              v-model="enteredAtributes.evolution_method"
             />
           </div>
         </form>
@@ -170,6 +180,7 @@
               id="inputRegionalVariant"
               aria-describedby="emailHelp"
               placeholder="Enter regional variant"
+              v-model="enteredAtributes.regional_variant"
             />
           </div>
         </form>
@@ -178,32 +189,6 @@
         <p class="explanation">
           Type what regional variant this Pokémon is. <br />
           (Original, Alolan, Galarian, Hisuian)
-        </p>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-        <p class="normal_text">Dex Entry</p>
-      </div>
-      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-        <form>
-          <div class="form-group">
-            <label for="inputDexEntry" class="plain_text"></label>
-            <input
-              type="dexEntry"
-              class="form-control"
-              id="inputDexEntry"
-              aria-describedby="emailHelp"
-              placeholder="Enter dex entry"
-            />
-          </div>
-        </form>
-      </div>
-      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-        <p class="explanation">
-          Type a piece of or entire dex entry of this Pokémon. <br />
-          (Note: might not be implemented)
         </p>
       </div>
     </div>
@@ -222,6 +207,7 @@
               id="inputBaseStatTotal"
               aria-describedby="emailHelp"
               placeholder="Enter base stat total"
+              v-model="enteredAtributes.base_stat_total"
             />
           </div>
         </form>
@@ -231,6 +217,24 @@
       </div>
     </div>
 
+    <!-- Displaying data entered into fields. Use only to check if the fields work -->
+    <!-- <div>
+      {{enteredAtributes.type_one}}
+      <br>
+      {{enteredAtributes.type_two}}
+      <br>
+      {{enteredAtributes.colour_one}}
+      <br>
+      {{enteredAtributes.colour_two}}
+      <br>
+      {{enteredAtributes.form}}
+      <br>
+      {{enteredAtributes.evolution_method}}
+      <br>
+      {{enteredAtributes.regional_variant}}
+      <br>
+      {{enteredAtributes.base_stat_total}}
+    </div> -->
     <button
       type="submit"
       class="btn btn-success btn-lg"
@@ -240,6 +244,7 @@
         color: #2a75bb;
         background-color: #ffcb05;
       "
+      @click="sendPokemonCredentials()"
     >
       <router-link to="/foundguest">Continue</router-link>
       <!-- Note: will have to create this page with display once database and backend communication are complete -->
@@ -247,7 +252,94 @@
   </div>
 </template>
 
-<script></script>
+<script>
+import axios from "axios";
+
+export default {
+  name: "GuestGuess",
+
+  methods: {
+    setPokemon(response) {
+      localStorage.setItem("foundPokemonName", response.data.dex_number);
+      localStorage.setItem("foundPokemonName", response.data.pokemon_name);
+      localStorage.setItem(
+        "foundPokemonTypeOne",
+        response.data.types[0].type_id
+      );
+      if (response.data.types.length > 1) {
+        localStorage.setItem(
+          "foundPokemonTypeTwo",
+          response.data.types[1].type_id
+        );
+      }
+      localStorage.setItem(
+        "foundPokemonColourOne",
+        response.data.colours[0].colour_id
+      );
+      if (response.data.colours.length > 1) {
+        localStorage.setItem(
+          "foundPokemonColourTwo",
+          response.data.colours[1].colour_id
+        );
+      }
+      localStorage.setItem("foundPokemonStage", response.data.stage);
+      localStorage.setItem(
+        "foundPokemonEvolutionMethod",
+        response.data.evolution_method
+      );
+      localStorage.setItem("foundPokemonRegionalVariant", response.data.form);
+      localStorage.setItem("foundPokemonBST", response.data.base_stat_total);
+      localStorage.setItem("foundPokemonEntry", response.data.dex_entry);
+    },
+
+    removeFromStorage() {
+      localStorage.removeItem("foundPokemonName");
+      localStorage.removeItem("foundPokemonName");
+      localStorage.removeItem("foundPokemonTypeOne");
+      localStorage.removeItem("foundPokemonTypeTwo");
+      localStorage.removeItem("foundPokemonColourOne");
+      localStorage.removeItem("foundPokemonColourTwo");
+      localStorage.removeItem("foundPokemonStage");
+      localStorage.removeItem("foundPokemonEvolutionMethod");
+      localStorage.removeItem("foundPokemonRegionalVariant");
+      localStorage.removeItem("foundPokemonBST");
+      localStorage.removeItem("foundPokemonEntry");
+    },
+
+    sendPokemonCredentials() {
+      axios
+        .post("http://localhost:3000/findpokemon", this.enteredAtributes)
+        .then((response) => {
+          console.log("recieved response");
+          console.log(response);
+          this.removeFromStorage();
+          if (response.data) {
+            this.setPokemon(response);
+            this.$router.push({
+              name: "foundguest",
+            });
+          }
+          //push to 404 pokemon not found
+        });
+    },
+  },
+
+  data() {
+    return {
+      enteredAtributes: {
+        type_one: "",
+        type_two: "",
+        colour_one: "",
+        colour_two: "",
+        stage: "",
+        evolution_method: "",
+        regional_variant: "",
+        base_stat_total: "",
+      },
+    };
+  },
+};
+</script>
 
 <style scoped>
 @import url("http://fonts.cdnfonts.com/css/pokemon-solid"); /* font-family: 'Pokemon Solid', sans-serif; */

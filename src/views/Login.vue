@@ -75,9 +75,15 @@ export default {
       axios
         .post("http://localhost:3000/login", this.loginCredentials)
         .then((response) => {
-          this.$router.push({
-            name: "profile",
-          });
+          console.log(response);
+          if (response.data) {
+            this.$router.push({
+              name: "profile",
+            });
+          }
+          else {
+            alert("Incorrect credentials. Please try again. " + "If you are not a user, please register.");
+          }
         });
     },
   },
