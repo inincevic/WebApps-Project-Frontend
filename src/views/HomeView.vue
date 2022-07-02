@@ -88,5 +88,6 @@
   color: #ffcb05;
   font-family: "Pokemon Solid", sans-serif;
   font-size: 35px;
+  letter-spacing: 3px;
 }
 </style>

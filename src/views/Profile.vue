@@ -4,8 +4,12 @@
     <br />
     <h1 class="title_text">Welcome {{ userInfo.username }}</h1>
     <br />
+    <br>
     <p class="plain_text">
-      After I finish up this will be the homepage for logged in users.
+      Number of guessed Pokémon: {{userInfo.number_guessed}}
+    </p>
+    <p class="plain_text">
+      Favourite Pokémon: {{userInfo.favourite_pokemon}}
     </p>
   </div>
 </template>
@@ -43,11 +47,15 @@ export default {
   font-size: 75px;
   text-align: left;
   margin-left: 30px;
+  letter-spacing: 4px;
 }
 
 .plain_text {
   color: #ffcb05;
-  font-family: "Unown", sans-serif;
-  font-size: 50px;
+  font-family: "Pokemon Solid", sans-serif;
+  font-size: 35px;
+  text-align: left;
+  margin-left: 30px;
+  letter-spacing: 3px;
 }
 </style>
