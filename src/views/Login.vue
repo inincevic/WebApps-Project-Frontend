@@ -43,7 +43,6 @@
 </template>
 
 <script>
-
 import axios from "axios";
 
 export default {
@@ -52,19 +51,31 @@ export default {
   async mounted() {},
 
   methods: {
+    async storeUser(user) {
+      localStorage.setItem("username", user.username);
+      localStorage.setItem("number_guessed", user.number_guessed);
+      localStorage.setItem("favourite_pokemon", user.favourite_pokemon);
+    },
+    removeFromStorage() {
+      localStorage.removeItem("username");
+      localStorage.removeItem("number_guessed");
+      localStorage.removeItem("favourite_pokemon");
+    },
     checkCredentials() {
       axios
         .post("http://localhost:3000/login", this.loginCredentials)
         .then((response) => {
           console.log(response);
           if (response.data) {
-            console.log(response.data)
+            this.removeFromStorage();
+            this.storeUser(response.data);
             this.$router.push({
               name: "profile",
             });
-          }
-          else {
-            alert("Incorrect credentials. Please try again. If you are not a user, please register.");
+          } else {
+            alert(
+              "Incorrect credentials. Please try again. If you are not a user, please register."
+            );
           }
         });
     },
@@ -72,8 +83,6 @@ export default {
 
   data() {
     return {
-      validLogin: 0,
-
       loginCredentials: {
         email: "",
         password: "",

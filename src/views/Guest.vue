@@ -259,8 +259,8 @@ export default {
   name: "GuestGuess",
 
   methods: {
-    setPokemon(response) {
-      localStorage.setItem("foundPokemonName", response.data.dex_number);
+    async setPokemon(response) {
+      localStorage.setItem("foundPokemonNumber", response.data.dex_number);
       localStorage.setItem("foundPokemonName", response.data.pokemon_name);
       localStorage.setItem(
         "foundPokemonTypeOne",
@@ -293,7 +293,7 @@ export default {
     },
 
     removeFromStorage() {
-      localStorage.removeItem("foundPokemonName");
+      localStorage.removeItem("foundPokemonNumber");
       localStorage.removeItem("foundPokemonName");
       localStorage.removeItem("foundPokemonTypeOne");
       localStorage.removeItem("foundPokemonTypeTwo");
@@ -312,8 +312,8 @@ export default {
         .then((response) => {
           console.log("recieved response");
           console.log(response);
-          this.removeFromStorage();
           if (response.data) {
+            this.removeFromStorage();
             this.setPokemon(response);
             this.$router.push({
               name: "foundguest",
