@@ -43,27 +43,8 @@
 </template>
 
 <script>
-//I still need to implement the way login is checked with the backend.
-//This page will lead to another after a successful login
-import axios from "axios";
-// import { createApp } from 'vue'
-// import { createStore } from 'vuex'
 
-// const store = createStore({
-//   state() {
-//     return {
-//       validLogin: 0
-//     }
-//   },
-//   mutations: {
-//     validate(state) {
-//       state.validLogin =
-//     }
-//   }
-// })
-// const app = createApp({
-//   app.use(store)
-// })
+import axios from "axios";
 
 export default {
   name: "Login",
@@ -83,7 +64,7 @@ export default {
             });
           }
           else {
-            alert("Incorrect credentials. Please try again. " + "If you are not a user, please register.");
+            alert("Incorrect credentials. Please try again. If you are not a user, please register.");
           }
         });
     },
