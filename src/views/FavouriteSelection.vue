@@ -2,18 +2,62 @@
   <div class="about">
     <br />
     <br />
-    <h1 class="title_text">Welcome {{ userInfo.username }}</h1>
+    <h1 class="title_text">
+      {{ userInfo.username }}, please write the name of your favourite Pokémon
+    </h1>
+    <br />
     <br />
     <br />
     <p class="plain_text">
-      Number of guessed Pokémon: {{ userInfo.number_guessed }}
+      Current favourite Pokémon: {{ userInfo.favourite_pokemon }}
     </p>
     <p class="plain_text">
       Favourite Pokémon: {{ userInfo.favourite_pokemon }}
     </p>
-    <p class="sub_text">
-      Set favourite Pokémon.
-    </p>
+    <br />
+    <div class="form-group">
+      <div class="col-xs-5" style="margin-left: 15px">
+        <input
+          type="email"
+          class="form-control"
+          id="exampleInputPokemon"
+          placeholder="New favourite Pokémon"
+          v-model="userInfo.new_favourtie_pokemon"
+        />
+      </div>
+      <div class="col-xs-5"></div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div>
+      <div class="col-xs-4"></div>
+      <div class="col-xs-4" align="center">
+        <div class="sub_text">Save your selection</div>
+        <button
+        type="button"
+        class="btn btn-success btn-lg"
+        style="
+          margin-left: 1000 px;
+          margin-top: 20px;
+          font-family: 'Pokemon Solid';
+          color: #2a75bb;
+          background-color: #ffcb05;
+        "
+      >
+        Save
+      </button>
+      </div>
+      <div class="col-xs-4">
+        <div class="sub_text">Return to profile</div>
+      </div>
+    </div>
+    <br />
+    <div class="col-xs-4"></div>
+    <div class="col-xs-4">
+      
+    </div>
     <button
       type="button"
       class="btn btn-success btn-lg"
@@ -24,7 +68,7 @@
         background-color: #ffcb05;
       "
     >
-      <router-link to="/FavouriteSelection">Select</router-link>
+      <router-link to="/profile">Return</router-link>
     </button>
   </div>
 </template>
@@ -38,19 +82,23 @@ export default {
     return {
       userInfo: {
         username: "",
-        number_guessed: "",
         favourite_pokemon: "",
+        new_favourtie_pokemon: "",
       },
     };
   },
   created() {
     this.userInfo.username = localStorage.getItem("username");
-    this.userInfo.number_guessed = localStorage.getItem("number_guessed");
     this.userInfo.favourite_pokemon = localStorage.getItem("favourite_pokemon");
     if (this.userInfo.favourite_pokemon == "") {
       this.userInfo.favourite_pokemon = "Not set.";
     }
   },
+  methods: {
+    async updateFavourite() {
+            
+    }
+  }
 };
 </script>
 
@@ -76,13 +124,14 @@ export default {
   margin-left: 30px;
   letter-spacing: 3px;
 }
+
 .sub_text {
   color: #ffcb05;
   font-family: "Pokemon Solid", sans-serif;
   font-size: 25px;
   text-align: left;
-  margin-left: 400px;
-  margin-top: 50px;
+  margin-left: 30px;
   letter-spacing: 3px;
 }
+
 </style>
