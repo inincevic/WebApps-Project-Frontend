@@ -43,13 +43,30 @@ export default {
       },
     };
   },
-  created() {
+  methods:{
+    async replace_name(){
+      if(localStorage.getItem("favourite_pokemon") != ""){
+        await axios
+        .post("http://localhost:3000/favouritename", this.userInfo)
+        .then(async (response) => {
+          console.log(response);
+          console.log(response.data);
+          localStorage.removeItem("favourite_pokemon");
+          localStorage.setItem("favourite_pokemon", response.data);
+          console.log(localStorage.getItem("favourite_pokemon"));
+        });
+      }
+      else{
+        this.userInfo.favourite_pokemon = "Not set.";
+      }
+    }
+  },
+  async created() {
     this.userInfo.username = localStorage.getItem("username");
     this.userInfo.number_guessed = localStorage.getItem("number_guessed");
     this.userInfo.favourite_pokemon = localStorage.getItem("favourite_pokemon");
-    if (this.userInfo.favourite_pokemon == "") {
-      this.userInfo.favourite_pokemon = "Not set.";
-    }
+    await this.replace_name();
+    this.userInfo.favourite_pokemon = localStorage.getItem("favourite_pokemon");
   },
 };
 </script>

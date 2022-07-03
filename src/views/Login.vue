@@ -65,7 +65,6 @@ export default {
       axios
         .post("http://localhost:3000/login", this.loginCredentials)
         .then((response) => {
-          console.log(response);
           if (response.data) {
             this.removeFromStorage();
             this.storeUser(response.data);

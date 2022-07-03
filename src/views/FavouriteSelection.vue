@@ -11,9 +11,6 @@
     <p class="plain_text">
       Current favourite Pokémon: {{ userInfo.favourite_pokemon }}
     </p>
-    <p class="plain_text">
-      Favourite Pokémon: {{ userInfo.favourite_pokemon }}
-    </p>
     <br />
     <div class="form-group">
       <div class="col-xs-5" style="margin-left: 15px">
@@ -22,7 +19,7 @@
           class="form-control"
           id="exampleInputPokemon"
           placeholder="New favourite Pokémon"
-          v-model="userInfo.new_favourtie_pokemon"
+          v-model="userInfo.new_favourite_pokemon"
         />
       </div>
       <div class="col-xs-5"></div>
@@ -45,10 +42,14 @@
           color: #2a75bb;
           background-color: #ffcb05;
         "
+        @click = "updateFavourite()"
       >
-        Save
+        <router-link to="/profile" >Save</router-link>
+
       </button>
       </div>
+
+      
       <div class="col-xs-4">
         <div class="sub_text">Return to profile</div>
       </div>
@@ -83,8 +84,9 @@ export default {
       userInfo: {
         username: "",
         favourite_pokemon: "",
-        new_favourtie_pokemon: "",
+        new_favourite_pokemon: "",
       },
+      response: ""
     };
   },
   created() {
@@ -95,8 +97,20 @@ export default {
     }
   },
   methods: {
+    async favouriteName(){
+
+    },
     async updateFavourite() {
-            
+      axios
+        .put("http://localhost:3000/updatefavourite", this.userInfo)
+        .then((response) => {
+          if(response.data){
+            alert("New favourite Pokémon has been set. It will show up on your profile after your next login.");
+          }
+          else{
+            alert("That Pokémon is either your current favourite or not a part of this database. Please try again.")
+          }
+        });
     }
   }
 };
