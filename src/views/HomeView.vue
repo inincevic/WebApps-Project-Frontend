@@ -6,17 +6,6 @@
     <br />
     <p class="plain_text">Please choose your user experience.</p>
     <br />
-    <div id="app">
-      <!-- <div v-for="p in pokemoni" :key="p">
-        {{ p.name }}
-        {{ p.primary_type }}
-        {{ p.secondary_type }}
-        {{ p.primary_colour }}
-        {{ p.secondary_colour }}
-        {{ p.stage }}
-        {{ p.evolution_method }}
-      </div> -->
-    </div>
     <button
       type="button"
       class="btn btn-success btn-lg"

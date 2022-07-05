@@ -1,63 +1,44 @@
 <template>
-  <div class="about">
-    <br />
-    <br />
-    <h1 class="title_text">Welcome {{ userInfo.username }}</h1>
-    <br />
-    <br />
-    <p class="plain_text">
-      Number of guessed Pokémon: {{ userInfo.number_guessed }}
-    </p>
-    <p class="plain_text">
-      Favourite Pokémon: {{ userInfo.favourite_pokemon }}
-    </p>
-    <p class="sub_text">
-      Set favourite Pokémon.
-    </p>
-    <button
-      type="button"
-      class="btn btn-success btn-lg"
-      style="
-        margin: 1em;
-        font-family: 'Pokemon Solid';
-        color: #2a75bb;
-        background-color: #ffcb05;
-      "
-    >
-      <router-link to="/FavouriteSelection">Select</router-link>
-    </button>
-  </div>
-
-  <div>
-    <div class="col-xs-4">
-    <p class="sub_text">List of all the Pokémon you guessed</p>
-    <button
-      type="button"
-      class="btn btn-success btn-lg"
-      style="
-        margin: 1em;
-        font-family: 'Pokemon Solid';
-        color: #2a75bb;
-        background-color: #ffcb05;
-      "
-    >
-      <router-link to="/GuessedList">List</router-link>
-    </button>
+  <div class="container">
+    <!-- Uppermost row -> shows username, number guessed and the favourite Pokémon -->
+    <div class="row row-upper">
+      <h1 class="title_text">Welcome {{ userInfo.username }}</h1>
+      <p class="plain_text">
+        Number of guessed Pokémon: {{ userInfo.number_guessed }}
+      </p>
+      <p class="plain_text">
+        Favourite Pokémon: {{ userInfo.favourite_pokemon }}
+      </p>
     </div>
-    <div class="col-xs-4">
-    <p class="sub_text">Pokémon guessing</p>
-    <button
-      type="button"
-      class="btn btn-success btn-lg"
-      style="
-        margin: 1em;
-        font-family: 'Pokemon Solid';
-        color: #2a75bb;
-        background-color: #ffcb05;
-      "
-    >
-      <router-link to="/UserGuess">Guess</router-link>
-    </button>
+
+    <!-- Middle row -> button for setting Pokémon -->
+    <div class="row row-middle">
+      <div class="col-sm-6">
+        <p class="sub_text">Set favourite Pokémon.</p>
+        <button
+          type="button"
+          class="btn btn-success btn-lg btn-favourite"
+        >
+          <router-link to="/FavouriteSelection">Select</router-link>
+        </button>
+      </div>
+      <div class="col-sm-6"></div>
+    </div>
+
+    <div class="row row-lower">
+      <div class="col-sm-5">
+        <p class="sub_text">List of all the Pokémon you guessed</p>
+        <button type="button" class="btn btn-success btn-lg btn-list">
+          <router-link to="/GuessedList">List</router-link>
+        </button>
+      </div>
+      <div class="col-sm-2"></div>
+      <div class="col-sm-5">
+        <p class="sub_text">Pokémon guessing</p>
+        <button type="button" class="btn btn-success btn-lg btn-guess">
+          <router-link to="/UserGuess">Guess</router-link>
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -76,20 +57,19 @@ export default {
       },
     };
   },
-  methods:{
-    async replace_name(){
-      if(localStorage.getItem("favourite_pokemon") != ""){
+  methods: {
+    async replace_name() {
+      if (localStorage.getItem("favourite_pokemon") != "") {
         await axios
-        .post("http://localhost:3000/favouritename", this.userInfo)
-        .then(async (response) => {
-          localStorage.removeItem("favourite_pokemon");
-          localStorage.setItem("favourite_pokemon", response.data);
-        });
-      }
-      else{
+          .post("http://localhost:3000/favouritename", this.userInfo)
+          .then(async (response) => {
+            localStorage.removeItem("favourite_pokemon");
+            localStorage.setItem("favourite_pokemon", response.data);
+          });
+      } else {
         this.userInfo.favourite_pokemon = "Not set.";
       }
-    }
+    },
   },
   async created() {
     this.userInfo.username = localStorage.getItem("username");
@@ -106,12 +86,44 @@ export default {
 @import url("http://fonts.cdnfonts.com/css/pokemon-hollow"); /* font-family: 'Pokemon Hollow', sans-serif; */
 @import url(//db.onlinewebfonts.com/c/6120639772c6c60a2fad6742051c6feb?family=Unown);
 
+.row-lower {
+  min-height: calc(25vh - 100px);
+}
+
+.row-middle {
+  min-height: calc(35vh - 100px);
+}
+
+.row-upper {
+  min-height: calc(40vh - 100px);
+  text-align: left;
+}
+
+.btn-guess {
+  margin: 1em;
+  font-family: "Pokemon Solid";
+  color: #2a75bb;
+  background-color: #ffcb05;
+}
+
+.btn-list {
+  margin: 1em;
+  font-family: "Pokemon Solid";
+  color: #2a75bb;
+  background-color: #ffcb05;
+}
+
+.btn-favourite {
+  margin: 1em;
+  font-family: "Pokemon Solid";
+  color: #2a75bb;
+  background-color: #ffcb05;
+}
+
 .title_text {
   color: #ffcb05;
   font-family: "Pokemon Solid", sans-serif;
   font-size: 75px;
-  text-align: left;
-  margin-left: 30px;
   letter-spacing: 4px;
 }
 
@@ -119,17 +131,13 @@ export default {
   color: #ffcb05;
   font-family: "Pokemon Solid", sans-serif;
   font-size: 35px;
-  text-align: left;
-  margin-left: 30px;
   letter-spacing: 3px;
+  margin-top: 2%;
 }
 .sub_text {
   color: #ffcb05;
   font-family: "Pokemon Solid", sans-serif;
   font-size: 25px;
-  text-align: left;
-  margin-left: 400px;
-  margin-top: 50px;
   letter-spacing: 3px;
 }
 </style>
