@@ -1,43 +1,54 @@
 <template>
   <div class="about">
-    <h1 class="title_text">The Pokémon is</h1>
-    <br />
-    <div class="display_div">
-      <p class="normal_text">
-        Name: {{ pokemon.name }}
-        <br />
-        Type: {{ pokemon.types.type_one }}, {{ pokemon.types.type_two }}
-        <br />
-        Colours: {{ pokemon.colours.colour_one }},
-        {{ pokemon.colours.colour_two }}
-        <br />
-        Form: {{ pokemon.form }}
-        <br />
-        Evolution method: {{ pokemon.evolution_method }}
-        <br />
-        Regional variant: {{ pokemon.regional_variant }}
-        <br />
-        Dex entry: {{ pokemon.dex_entry }}
-        <br />
-        Base stat total: {{ pokemon.base_state_total }}
-      </p>
+    <div class="row row-upper">
+      <h1 class="title_text">The Pokémon is</h1>
     </div>
-
-    <div class="sub_text">
-      Return to Profile
-      <br>
-      <button
-        type="button"
-        class="btn btn-success btn-lg"
-        style="
-          margin: 1em;
-          font-family: 'Pokemon Solid';
-          color: #2a75bb;
-          background-color: #ffcb05;
-        "
-      >
-        <router-link to="/profile">Return</router-link>
-      </button>
+    <!-- Display row -->
+    <div class="row row-middle">
+      <div>
+        <p class="normal_text">
+          Name: {{ pokemon.name }}
+          <br />
+          Type: {{ pokemon.types.type_one }}, {{ pokemon.types.type_two }}
+          <br />
+          Colours: {{ pokemon.colours.colour_one }},
+          {{ pokemon.colours.colour_two }}
+          <br />
+          Form: {{ pokemon.form }}
+          <br />
+          Evolution method: {{ pokemon.evolution_method }}
+          <br />
+          Regional variant: {{ pokemon.regional_variant }}
+          <br />
+          Dex entry: {{ pokemon.dex_entry }}
+          <br />
+          Base stat total: {{ pokemon.base_state_total }}
+        </p>
+      </div>
+    </div>
+    <!-- Return to profile button -->
+    <div class="row attribute-row">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4">
+        <div class="sub_text">
+          Return to Profile
+          <br />
+          <button
+            type="button"
+            class="btn btn-success btn-lg"
+            style="
+              margin: 1em;
+              font-family: 'Pokemon Solid';
+              color: #2a75bb;
+              background-color: #ffcb05;
+            "
+          >
+            <router-link to="/profile">Return</router-link>
+          </button>
+        </div>
+        <div class="col-sm-4"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -95,6 +106,22 @@ export default {
 @import url("http://fonts.cdnfonts.com/css/pokemon-hollow"); /* font-family: 'Pokemon Hollow', sans-serif; */
 @import url(//db.onlinewebfonts.com/c/6120639772c6c60a2fad6742051c6feb?family=Unown);
 
+.row-lower {
+  min-height: calc(25vh - 100px);
+}
+
+.row-middle {
+  min-height: calc(35vh - 100px);
+  margin-top: 1%;
+  margin-left: 4%;
+}
+
+.row-upper {
+  min-height: calc(10vh - 100px);
+  text-align: left;
+  margin-left: 4%;
+}
+
 .title_text {
   color: #ffcb05;
   font-family: "Pokemon Solid", sans-serif;
@@ -115,16 +142,10 @@ export default {
   font-size: 35px;
 }
 
-.display_div {
-  margin-left: 200px;
-}
-
 .sub_text {
   color: #ffcb05;
   font-family: "Pokemon Solid", sans-serif;
   font-size: 25px;
-  text-align: left;
-  margin-left: 30px;
   letter-spacing: 3px;
 }
 </style>
