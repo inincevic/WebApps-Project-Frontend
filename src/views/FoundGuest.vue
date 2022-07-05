@@ -44,6 +44,8 @@
 import axios from "axios";
 
 export default {
+  name: "FoundGuest",
+  
   data() {
     return {
       pokemon: {

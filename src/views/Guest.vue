@@ -274,8 +274,8 @@
       "
       @click="sendPokemonCredentials()"
     >
-      <router-link to="/foundguest">Continue</router-link>
-      <!-- Note: will have to create this page with display once database and backend communication are complete -->
+      Continue
+      
     </button>
   </div>
 </template>
