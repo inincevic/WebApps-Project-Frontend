@@ -37,6 +37,7 @@
   color: #ffcb05;
   font-family: "Pokemon Solid", sans-serif;
   font-size: 75px;
+  letter-spacing: 3px;
 }
 
 .plain_text {

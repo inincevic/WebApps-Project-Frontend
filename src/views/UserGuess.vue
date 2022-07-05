@@ -20,7 +20,7 @@
               style="width: 400px; height: 30px"
               v-model="enteredAtributes.type_one"
             >
-            <option selected> </option>
+              <option selected></option>
               <option v-for="type in attributes_database.types" :key="type">
                 {{ type.type_name }}
               </option>
@@ -55,7 +55,7 @@
               style="width: 400px; height: 30px"
               v-model="enteredAtributes.type_two"
             >
-            <option selected> </option>
+              <option selected></option>
               <option v-for="type in attributes_database.types" :key="type">
                 {{ type.type_name }}
               </option>
@@ -90,8 +90,11 @@
               style="width: 400px; height: 30px"
               v-model="enteredAtributes.colour_one"
             >
-            <option selected> </option>
-              <option v-for="colour in attributes_database.colours" :key="colour">
+              <option selected></option>
+              <option
+                v-for="colour in attributes_database.colours"
+                :key="colour"
+              >
                 {{ colour.colour_name }}
               </option>
             </select>
@@ -125,8 +128,11 @@
               style="width: 400px; height: 30px"
               v-model="enteredAtributes.colour_two"
             >
-            <option selected> </option>
-              <option v-for="colour in attributes_database.colours" :key="colour">
+              <option selected></option>
+              <option
+                v-for="colour in attributes_database.colours"
+                :key="colour"
+              >
                 {{ colour.colour_name }}
               </option>
             </select>
@@ -188,8 +194,11 @@
               style="width: 400px; height: 30px"
               v-model="enteredAtributes.evolution_method"
             >
-              <option selected> </option>
-              <option v-for="method in attributes_database.evolution_methods" :key="method">
+              <option selected></option>
+              <option
+                v-for="method in attributes_database.evolution_methods"
+                :key="method"
+              >
                 {{ method.method_name }}
               </option>
             </select>
@@ -224,8 +233,11 @@
               id="inputGroupSelect01"
               v-model="enteredAtributes.regional_variant"
             >
-              <option selected> </option>
-              <option v-for="variant in attributes_database.forms" :key="variant">
+              <option selected></option>
+              <option
+                v-for="variant in attributes_database.forms"
+                :key="variant"
+              >
                 {{ variant.variant_name }}
               </option>
             </select>
@@ -263,20 +275,37 @@
         <p class="explanation">Enter this Pokémon's base stat total.</p>
       </div>
     </div>
-    <button
-      type="submit"
-      class="btn btn-success btn-lg"
-      style="
-        margin: 1em;
-        font-family: 'Pokemon Solid';
-        color: #2a75bb;
-        background-color: #ffcb05;
-      "
-      @click="sendPokemonCredentials()"
-    >
-      Continue
-      
-    </button>
+    <div>
+      <button
+        type="submit"
+        class="btn btn-success btn-lg"
+        style="
+          margin: 1em;
+          font-family: 'Pokemon Solid';
+          color: #2a75bb;
+          background-color: #ffcb05;
+        "
+        @click="sendPokemonCredentials()"
+      >
+        Continue
+      </button>
+    </div>
+    <div class="sub_text">
+      Return to Profile
+      <br />
+      <button
+        type="button"
+        class="btn btn-success btn-lg"
+        style="
+          margin: 1em;
+          font-family: 'Pokemon Solid';
+          color: #2a75bb;
+          background-color: #ffcb05;
+        "
+      >
+        <router-link to="/profile">Return</router-link>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -284,7 +313,7 @@
 import axios from "axios";
 
 export default {
-  name: "GuestGuess",
+  name: "UserGuess",
 
   methods: {
     //adding found Pokémon's data into localhost
@@ -345,20 +374,44 @@ export default {
         });
     },
 
+    //updating user guessed Pokémon list and number
+    async updateUser() {
+      console.log("Updating user data");
+      this.update_user_info.username = localStorage.getItem("username");
+      this.update_user_info.pokemon_name =
+        localStorage.getItem("foundPokemonName");
+
+      await axios
+        .put("http://localhost:3000/updateuser", this.update_user_info)
+        .then((response) => {
+          if (response.data == "Ok") {
+            alert(
+              "Number of Pokémon guessed and list of guessed Pokémon have been updated. Updated number of guessed Pokémon will show up on your profile after your next login."
+            );
+          } else if (response.data = "Existing") {
+            alert(
+              "You have guessed this Pokemon before. Number of guessed Pokémon will not increase."
+            );
+          } else if (response.data = "Not in Database") alert("Not in Database");
+        });
+    },
+
     //finding a Pokémon with given credentials
     sendPokemonCredentials() {
       axios
         .post("http://localhost:3000/findpokemon", this.enteredAtributes)
-        .then((response) =>  {
+        .then((response) => {
           console.log("recieved response");
           console.log(response);
-          if (response.data) {
-            this.removeFromStorage();
+          setTimeout(() => (this.isHidden = false), 500);
+          this.removeFromStorage();
+          if (response.data != "") {
             this.setPokemon(response);
+            this.updateUser();
             this.$router.push({
-              name: "foundguest",
+              name: "founduser",
             });
-          } else {
+          } else if (response.data == "") {
             alert("404 Pokémon not found");
           }
           //push to 404 pokemon not found
@@ -387,6 +440,10 @@ export default {
         colours: [],
         evolution_methods: [],
         forms: [],
+      },
+      update_user_info: {
+        username: "",
+        pokemon_name: "",
       },
     };
   },
@@ -421,5 +478,14 @@ export default {
   color: #ffcb05;
   font-family: "Times New Roman", Times, serif;
   font-size: 20px;
+}
+
+.sub_text {
+  color: #ffcb05;
+  font-family: "Pokemon Solid", sans-serif;
+  font-size: 25px;
+  text-align: left;
+  margin-left: 30px;
+  letter-spacing: 3px;
 }
 </style>

@@ -62,7 +62,39 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/FoundGuest.vue')
-  }
+  },
+  {
+    path: '/FavouriteSelection',
+    name: 'favouriteselection',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/FavouriteSelection.vue')
+  },
+  {
+    path: '/GuessedList',
+    name: 'guessedlist',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/GuessedList.vue')
+  },
+  {
+    path: '/UserGuess',
+    name: 'useguess',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/UserGuess.vue')
+  },
+  {
+    path: '/FoundUser',
+    name: 'founduser',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/FoundUser.vue')
+  },
 ]
 
 const router = createRouter({

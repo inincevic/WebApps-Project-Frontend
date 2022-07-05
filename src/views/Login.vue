@@ -43,27 +43,7 @@
 </template>
 
 <script>
-//I still need to implement the way login is checked with the backend.
-//This page will lead to another after a successful login
 import axios from "axios";
-// import { createApp } from 'vue'
-// import { createStore } from 'vuex'
-
-// const store = createStore({
-//   state() {
-//     return {
-//       validLogin: 0
-//     }
-//   },
-//   mutations: {
-//     validate(state) {
-//       state.validLogin =
-//     }
-//   }
-// })
-// const app = createApp({
-//   app.use(store)
-// })
 
 export default {
   name: "Login",
@@ -71,18 +51,30 @@ export default {
   async mounted() {},
 
   methods: {
+    async storeUser(user) {
+      localStorage.setItem("username", user.username);
+      localStorage.setItem("number_guessed", user.number_guessed);
+      localStorage.setItem("favourite_pokemon", user.favourite_pokemon);
+    },
+    removeFromStorage() {
+      localStorage.removeItem("username");
+      localStorage.removeItem("number_guessed");
+      localStorage.removeItem("favourite_pokemon");
+    },
     checkCredentials() {
       axios
         .post("http://localhost:3000/login", this.loginCredentials)
         .then((response) => {
-          console.log(response);
           if (response.data) {
+            this.removeFromStorage();
+            this.storeUser(response.data);
             this.$router.push({
               name: "profile",
             });
-          }
-          else {
-            alert("Incorrect credentials. Please try again. " + "If you are not a user, please register.");
+          } else {
+            alert(
+              "Incorrect credentials. Please try again. If you are not a user, please register."
+            );
           }
         });
     },
@@ -90,8 +82,6 @@ export default {
 
   data() {
     return {
-      validLogin: 0,
-
       loginCredentials: {
         email: "",
         password: "",
@@ -110,6 +100,7 @@ export default {
   color: #ffcb05;
   font-family: "Pokemon Solid", sans-serif;
   font-size: 75px;
+  letter-spacing: 3px;
 }
 
 .plain_text {

@@ -59,18 +59,12 @@
 <script>
 // @ is an alias to /src
 
-// export default {
-//   name: "HomeView",
-//   async mounted() {
-//     let resp = await fetch("http://localhost:3000/pokemoni");
-//     this.pokemoni = await resp.json();
-//   },
-//   data() {
-//     return {
-//      pokemoni: [],
-//     };
-//   },
-// };
+export default {
+  name: "HomeView",
+  created() {
+    localStorage.clear();
+  }
+};
 </script>
 
 <style scoped>
@@ -88,5 +82,6 @@
   color: #ffcb05;
   font-family: "Pokemon Solid", sans-serif;
   font-size: 35px;
+  letter-spacing: 3px;
 }
 </style>
