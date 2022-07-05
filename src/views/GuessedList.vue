@@ -4,7 +4,7 @@
   <div class="text_box">
     <div class="text_in_box">
       <p v-for="pokemon in guessed_pokemon" :key="pokemon">
-        {{ pokemon }}
+        {{ pokemon.pokemon_name }}
       </p>
     </div>
   </div>
@@ -45,6 +45,7 @@ export default {
         })
         .then(async (response) => {
           this.guessed_pokemon = response.data;
+          console.log(this.guessed_pokemon)
           if(this.guessed_pokemon[0] == null)
           {
             this.guessed_pokemon[0] = "This user has yet to guess any Pokémon"

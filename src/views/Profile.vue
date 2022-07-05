@@ -56,7 +56,7 @@
         background-color: #ffcb05;
       "
     >
-      <router-link to="">Select</router-link>
+      <router-link to="/UserGuess">Guess</router-link>
     </button>
     </div>
   </div>

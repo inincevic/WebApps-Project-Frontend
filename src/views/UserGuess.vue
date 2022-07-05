@@ -20,7 +20,7 @@
               style="width: 400px; height: 30px"
               v-model="enteredAtributes.type_one"
             >
-            <option selected> </option>
+              <option selected></option>
               <option v-for="type in attributes_database.types" :key="type">
                 {{ type.type_name }}
               </option>
@@ -55,7 +55,7 @@
               style="width: 400px; height: 30px"
               v-model="enteredAtributes.type_two"
             >
-            <option selected> </option>
+              <option selected></option>
               <option v-for="type in attributes_database.types" :key="type">
                 {{ type.type_name }}
               </option>
@@ -90,8 +90,11 @@
               style="width: 400px; height: 30px"
               v-model="enteredAtributes.colour_one"
             >
-            <option selected> </option>
-              <option v-for="colour in attributes_database.colours" :key="colour">
+              <option selected></option>
+              <option
+                v-for="colour in attributes_database.colours"
+                :key="colour"
+              >
                 {{ colour.colour_name }}
               </option>
             </select>
@@ -125,8 +128,11 @@
               style="width: 400px; height: 30px"
               v-model="enteredAtributes.colour_two"
             >
-            <option selected> </option>
-              <option v-for="colour in attributes_database.colours" :key="colour">
+              <option selected></option>
+              <option
+                v-for="colour in attributes_database.colours"
+                :key="colour"
+              >
                 {{ colour.colour_name }}
               </option>
             </select>
@@ -188,8 +194,11 @@
               style="width: 400px; height: 30px"
               v-model="enteredAtributes.evolution_method"
             >
-              <option selected> </option>
-              <option v-for="method in attributes_database.evolution_methods" :key="method">
+              <option selected></option>
+              <option
+                v-for="method in attributes_database.evolution_methods"
+                :key="method"
+              >
                 {{ method.method_name }}
               </option>
             </select>
@@ -224,8 +233,11 @@
               id="inputGroupSelect01"
               v-model="enteredAtributes.regional_variant"
             >
-              <option selected> </option>
-              <option v-for="variant in attributes_database.forms" :key="variant">
+              <option selected></option>
+              <option
+                v-for="variant in attributes_database.forms"
+                :key="variant"
+              >
                 {{ variant.variant_name }}
               </option>
             </select>
@@ -263,6 +275,7 @@
         <p class="explanation">Enter this Pokémon's base stat total.</p>
       </div>
     </div>
+    <div>
     <button
       type="submit"
       class="btn btn-success btn-lg"
@@ -277,6 +290,23 @@
       <router-link to="/foundguest">Continue</router-link>
       <!-- Note: will have to create this page with display once database and backend communication are complete -->
     </button>
+  </div>
+    <div class="sub_text">
+      Return to Profile
+      <br>
+      <button
+        type="button"
+        class="btn btn-success btn-lg"
+        style="
+          margin: 1em;
+          font-family: 'Pokemon Solid';
+          color: #2a75bb;
+          background-color: #ffcb05;
+        "
+      >
+        <router-link to="/profile">Return</router-link>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -349,14 +379,14 @@ export default {
     sendPokemonCredentials() {
       axios
         .post("http://localhost:3000/findpokemon", this.enteredAtributes)
-        .then((response) =>  {
+        .then((response) => {
           console.log("recieved response");
           console.log(response);
           if (response.data) {
             this.removeFromStorage();
             this.setPokemon(response);
             this.$router.push({
-              name: "foundguest",
+              name: "founduser",
             });
           } else {
             alert("404 Pokémon not found");
@@ -421,5 +451,14 @@ export default {
   color: #ffcb05;
   font-family: "Times New Roman", Times, serif;
   font-size: 20px;
+}
+
+.sub_text {
+  color: #ffcb05;
+  font-family: "Pokemon Solid", sans-serif;
+  font-size: 25px;
+  text-align: left;
+  margin-left: 30px;
+  letter-spacing: 3px;
 }
 </style>
