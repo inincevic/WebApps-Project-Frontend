@@ -27,6 +27,39 @@
       <router-link to="/FavouriteSelection">Select</router-link>
     </button>
   </div>
+
+  <div>
+    <div class="col-xs-4">
+    <p class="sub_text">List of all the Pokémon you guessed</p>
+    <button
+      type="button"
+      class="btn btn-success btn-lg"
+      style="
+        margin: 1em;
+        font-family: 'Pokemon Solid';
+        color: #2a75bb;
+        background-color: #ffcb05;
+      "
+    >
+      <router-link to="/GuessedList">List</router-link>
+    </button>
+    </div>
+    <div class="col-xs-4">
+    <p class="sub_text">Pokémon guessing</p>
+    <button
+      type="button"
+      class="btn btn-success btn-lg"
+      style="
+        margin: 1em;
+        font-family: 'Pokemon Solid';
+        color: #2a75bb;
+        background-color: #ffcb05;
+      "
+    >
+      <router-link to="">Select</router-link>
+    </button>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -49,11 +82,8 @@ export default {
         await axios
         .post("http://localhost:3000/favouritename", this.userInfo)
         .then(async (response) => {
-          console.log(response);
-          console.log(response.data);
           localStorage.removeItem("favourite_pokemon");
           localStorage.setItem("favourite_pokemon", response.data);
-          console.log(localStorage.getItem("favourite_pokemon"));
         });
       }
       else{

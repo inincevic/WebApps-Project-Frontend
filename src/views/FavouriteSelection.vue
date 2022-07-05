@@ -33,32 +33,28 @@
       <div class="col-xs-4" align="center">
         <div class="sub_text">Save your selection</div>
         <button
-        type="button"
-        class="btn btn-success btn-lg"
-        style="
-          margin-left: 1000 px;
-          margin-top: 20px;
-          font-family: 'Pokemon Solid';
-          color: #2a75bb;
-          background-color: #ffcb05;
-        "
-        @click = "updateFavourite()"
-      >
-        <router-link to="/profile" >Save</router-link>
-
-      </button>
+          type="button"
+          class="btn btn-success btn-lg"
+          style="
+            margin-left: 1000 px;
+            margin-top: 20px;
+            font-family: 'Pokemon Solid';
+            color: #2a75bb;
+            background-color: #ffcb05;
+          "
+          @click="updateFavourite()"
+        >
+          <router-link to="/profile">Save</router-link>
+        </button>
       </div>
 
-      
       <div class="col-xs-4">
         <div class="sub_text">Return to profile</div>
       </div>
     </div>
     <br />
     <div class="col-xs-4"></div>
-    <div class="col-xs-4">
-      
-    </div>
+    <div class="col-xs-4"></div>
     <button
       type="button"
       class="btn btn-success btn-lg"
@@ -86,7 +82,7 @@ export default {
         favourite_pokemon: "",
         new_favourite_pokemon: "",
       },
-      response: ""
+      response: "",
     };
   },
   created() {
@@ -97,22 +93,23 @@ export default {
     }
   },
   methods: {
-    async favouriteName(){
-
-    },
+    async favouriteName() {},
     async updateFavourite() {
       axios
         .put("http://localhost:3000/updatefavourite", this.userInfo)
         .then((response) => {
-          if(response.data){
-            alert("New favourite Pokémon has been set. It will show up on your profile after your next login.");
-          }
-          else{
-            alert("That Pokémon is either your current favourite or not a part of this database. Please try again.")
+          if (response.data) {
+            alert(
+              "New favourite Pokémon has been set. It will show up on your profile after your next login."
+            );
+          } else {
+            alert(
+              "That Pokémon is either your current favourite or not a part of this database. Please try again."
+            );
           }
         });
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -147,5 +144,4 @@ export default {
   margin-left: 30px;
   letter-spacing: 3px;
 }
-
 </style>

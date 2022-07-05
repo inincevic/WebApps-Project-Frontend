@@ -1,0 +1,106 @@
+<template>
+  <div class="title_text">Pokémon guessed by {{ username }}</div>
+  <div class="plain_text">Number of guessed Pokémon: {{ number_guessed }}</div>
+  <div class="text_box">
+    <div class="text_in_box">
+      <p v-for="pokemon in guessed_pokemon" :key="pokemon">
+        {{ pokemon }}
+      </p>
+    </div>
+  </div>
+
+  <div class="sub_text">Return to profile</div>
+  <br>
+  <button
+    type="button"
+    class="btn btn-success btn-lg"
+    style="
+      margin: 1em;
+      font-family: 'Pokemon Solid';
+      color: #2a75bb;
+      background-color: #ffcb05;
+    "
+  >
+    <router-link to="/profile">Return</router-link>
+  </button>
+</template>
+
+<script>
+import axios from "axios";
+
+export default {
+  name: "Profile",
+  data() {
+    return {
+      username: "",
+      number_guessed: "",
+      guessed_pokemon: [],
+    };
+  },
+  methods: {
+    async getFoundPokemon() {
+      console.log(this.username);
+      await axios
+        .post("http://localhost:3000/guessedpokemon", {
+          username: this.username,
+        })
+        .then(async (response) => {
+          this.guessed_pokemon = response.data;
+          console.log(this.guessed_pokemon);
+        });
+    },
+  },
+  created() {
+    this.username = localStorage.getItem("username");
+    this.number_guessed = localStorage.getItem("number_guessed");
+    this.getFoundPokemon();
+  },
+};
+</script>
+
+<style scoped>
+@import url("http://fonts.cdnfonts.com/css/pokemon-solid"); /* font-family: 'Pokemon Solid', sans-serif; */
+@import url("http://fonts.cdnfonts.com/css/pokemon-hollow"); /* font-family: 'Pokemon Hollow', sans-serif; */
+@import url(//db.onlinewebfonts.com/c/6120639772c6c60a2fad6742051c6feb?family=Unown);
+
+.title_text {
+  color: #ffcb05;
+  font-family: "Pokemon Solid", sans-serif;
+  font-size: 75px;
+  letter-spacing: 3px;
+  text-align: left;
+  margin-left: 1%;
+}
+
+.plain_text {
+  color: #ffcb05;
+  font-family: "Pokemon Solid", sans-serif;
+  font-size: 35px;
+  text-align: left;
+  margin-left: 30px;
+  margin-top: 25px;
+  letter-spacing: 3px;
+}
+.sub_text {
+  color: #ffcb05;
+  font-family: "Pokemon Solid", sans-serif;
+  font-size: 25px;
+  text-align: center;
+  margin-left: 400px;
+  margin-top: 50px;
+  letter-spacing: 3px;
+}
+.text_box {
+  background-color: darkgray;
+  text-align: left;
+  letter-spacing: 3px;
+  margin-left: 1%;
+  margin-right: 1%;
+  margin-top: 30px;
+}
+.text_in_box {
+  font-family: "Pokemon Solid", sans-serif;
+  font-size: 30px;
+  margin-left: 1%;
+}
+</style>
