@@ -39,14 +39,16 @@ export default {
   },
   methods: {
     async getFoundPokemon() {
-      console.log(this.username);
       await axios
         .post("http://localhost:3000/guessedpokemon", {
           username: this.username,
         })
         .then(async (response) => {
           this.guessed_pokemon = response.data;
-          console.log(this.guessed_pokemon);
+          if(this.guessed_pokemon[0] == null)
+          {
+            this.guessed_pokemon[0] = "This user has yet to guess any Pokémon"
+          }
         });
     },
   },
