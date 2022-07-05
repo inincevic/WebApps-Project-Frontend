@@ -1,11 +1,74 @@
 <template>
-  <div class="about">
+  <div class="container">
+    <!-- Title -->
+    <div class="row row-upper">
+      <h1 class="title_text">
+        {{ userInfo.username }}, please write the name of your favourite Pokémon
+      </h1>
+    </div>
+    <!-- Input field -->
+    <div class="row row-middle">
+      <p class="plain_text">
+        Current favourite Pokémon: {{ userInfo.favourite_pokemon }}
+      </p>
+      <div class="form-group">
+        <div class="col-xs-8">
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputPokemon"
+            placeholder="New favourite Pokémon"
+            v-model="userInfo.new_favourite_pokemon"
+          />
+        </div>
+      </div>
+    </div>
+    <!-- Buttons -->
+    <div class="row row-lower">
+      <div class="col-xs-2"></div>
+      <div class="col-xs-4 btn-col">
+        <div class="sub_text">Save your selection</div>
+        <button
+          type="button"
+          class="btn btn-success btn-lg"
+          style="
+            margin-left: 1000 px;
+            margin-top: 20px;
+            font-family: 'Pokemon Solid';
+            color: #2a75bb;
+            background-color: #ffcb05;
+          "
+          @click="updateFavourite()"
+        >
+          <router-link to="/profile">Save</router-link>
+        </button>
+      </div>
+      <div class="col-xs-4 btn-col">
+        <div class="sub_text">Return to profile</div>
+        <button
+          type="button"
+          class="btn btn-success btn-lg"
+          style="
+            margin: 1em;
+            font-family: 'Pokemon Solid';
+            color: #2a75bb;
+            background-color: #ffcb05;
+          "
+        >
+          <router-link to="/profile">Return</router-link>
+        </button>
+      </div>
+      <div class="col-xs-2"></div>
+    </div>
+  </div>
+
+  <!-- <div class="about">
     <br />
     <br />
-    <h1 class="title_text">
+     <h1 class="title_text">
       {{ userInfo.username }}, please write the name of your favourite Pokémon
-    </h1>
-    <br />
+    </h1> -->
+  <!-- <br />
     <br />
     <br />
     <p class="plain_text">
@@ -23,12 +86,9 @@
         />
       </div>
       <div class="col-xs-5"></div>
-    </div>
-    <br />
-    <br />
-    <br />
-    <br />
-    <div>
+    </div> -->
+
+  <!-- <div>
       <div class="col-xs-4"></div>
       <div class="col-xs-4" align="center">
         <div class="sub_text">Save your selection</div>
@@ -67,7 +127,7 @@
     >
       <router-link to="/profile">Return</router-link>
     </button>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -118,12 +178,28 @@ export default {
 @import url("http://fonts.cdnfonts.com/css/pokemon-hollow"); /* font-family: 'Pokemon Hollow', sans-serif; */
 @import url(//db.onlinewebfonts.com/c/6120639772c6c60a2fad6742051c6feb?family=Unown);
 
+.row-lower {
+  min-height: calc(25vh - 100px);
+}
+
+.row-middle {
+  min-height: calc(35vh - 100px);
+}
+
+.row-upper {
+  min-height: calc(40vh - 100px);
+  text-align: left;
+}
+
+.btn-col{
+  align-content: center;
+  text-align: center;
+}
+
 .title_text {
   color: #ffcb05;
   font-family: "Pokemon Solid", sans-serif;
-  font-size: 75px;
-  text-align: left;
-  margin-left: 30px;
+  font-size: 55px;
   letter-spacing: 4px;
 }
 
@@ -132,7 +208,6 @@ export default {
   font-family: "Pokemon Solid", sans-serif;
   font-size: 35px;
   text-align: left;
-  margin-left: 30px;
   letter-spacing: 3px;
 }
 
@@ -140,8 +215,6 @@ export default {
   color: #ffcb05;
   font-family: "Pokemon Solid", sans-serif;
   font-size: 25px;
-  text-align: left;
-  margin-left: 30px;
   letter-spacing: 3px;
 }
 </style>
