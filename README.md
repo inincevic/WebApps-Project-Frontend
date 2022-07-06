@@ -1,4 +1,9 @@
-# The original idea for this project has been created by Ivan Ninčević and Anton Maurović back in 2017
+#Author
+Ivan Ninčević
+
+#Description
+
+The original idea for this project has been created by Ivan Ninčević and Anton Maurović back in 2017
 That year the wrote a basic version of it in C++ using .txt files for simple comand line based guessing experience
 
 # In 2021 and 2022 Ivan Ninčević and Matia Perčić used this idea as a project for "Računalni praktikum 2"
