@@ -92,8 +92,8 @@ export default {
 </script>
 
 <style scoped>
-@import url("http://fonts.cdnfonts.com/css/pokemon-solid"); /* font-family: 'Pokemon Solid', sans-serif; */
-@import url("http://fonts.cdnfonts.com/css/pokemon-hollow"); /* font-family: 'Pokemon Hollow', sans-serif; */
+@import url(//db.onlinewebfonts.com/c/9b6de539b8ae4ce6ef9b137bb7764413?family=Pokemon++Solid); /* font-family: 'Pokemon Solid', sans-serif; */
+@import url(//db.onlinewebfonts.com/c/77b688bb2949f59670224cb24e8e8144?family=Pokemon++Hollow); /* font-family: 'Pokemon Hollow', sans-serif; */
 @import url(//db.onlinewebfonts.com/c/6120639772c6c60a2fad6742051c6feb?family=Unown);
 
 .title_text {
