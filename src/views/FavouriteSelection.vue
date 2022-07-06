@@ -89,7 +89,7 @@ export default {
     async favouriteName() {},
     async updateFavourite() {
       axios
-        .put("http://localhost:3000/updatefavourite", this.userInfo)
+        .put("https://pokeguesserproject.herokuapp.com/updatefavourite", this.userInfo)
         .then((response) => {
           if (response.data) {
             alert(

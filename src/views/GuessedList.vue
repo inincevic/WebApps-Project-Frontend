@@ -55,7 +55,7 @@ export default {
   methods: {
     async getFoundPokemon() {
       await axios
-        .post("http://localhost:3000/guessedpokemon", {
+        .post("https://pokeguesserproject.herokuapp.com/guessedpokemon", {
           username: this.username,
         })
         .then(async (response) => {

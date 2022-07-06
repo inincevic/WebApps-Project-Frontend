@@ -394,7 +394,7 @@ export default {
     //getting attributes from the database
     async getAttributes() {
       await axios
-        .get("http://localhost:3000/getattributes")
+        .get("https://pokeguesserproject.herokuapp.com/getattributes")
         .then((response) => {
           this.attributes_database = response.data;
         });
@@ -408,7 +408,7 @@ export default {
         localStorage.getItem("foundPokemonName");
 
       await axios
-        .put("http://localhost:3000/updateuser", this.update_user_info)
+        .put("https://pokeguesserproject.herokuapp.com/updateuser", this.update_user_info)
         .then((response) => {
           if (response.data == "Ok") {
             alert(
@@ -433,7 +433,7 @@ export default {
         return;
       }
       axios
-        .post("http://localhost:3000/findpokemon", this.enteredAtributes)
+        .post("https://pokeguesserproject.herokuapp.com/findpokemon", this.enteredAtributes)
         .then((response) => {
           console.log("recieved response");
           console.log(response);

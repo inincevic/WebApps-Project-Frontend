@@ -63,7 +63,7 @@ export default {
     },
     checkCredentials() {
       axios
-        .post("http://localhost:3000/login", this.loginCredentials)
+        .post("https://pokeguesserproject.herokuapp.com/login", this.loginCredentials)
         .then((response) => {
           if (response.data) {
             this.removeFromStorage();
