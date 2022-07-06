@@ -18,6 +18,24 @@
   color: #2c3e50;
 }
 
+@font-face {
+  font-family: "Pokemon Solid";
+  src: local("Pokemon Solid"),
+   url(./fonts/Pokemon_Solid.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Pokemon Hollow";
+  src: local("Pokemon Hollow"),
+   url(./fonts/Pokemon_Hollow.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Unown";
+  src: local("Unown"),
+   url(./fonts/Unown.ttf) format("truetype");
+}
+
 .navbar_title {
   text-align: center;
   font-family: "Pokemon Solid";
